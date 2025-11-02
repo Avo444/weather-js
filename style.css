@@ -1,129 +1,175 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
+form {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 50px 100px;
+  display: inline-flex;
+  max-width: 1220px;
+  width: 100%;
+}
+
+form input {
+  width: 100%;
+  border-radius: 30px;
+  padding: 15px 30px;
+  outline: none;
+  border: 4px solid #1d71d8;
+}
+
+form input:focus {
+  border-color: green;
+}
+
+form input:focus::placeholder {
+  color: green;
+}
+
+form input::placeholder {
+  color: #1d71d8;
+  font-weight: 900;
+}
 
 .weather {
-    font-family: "Montserrat", sans-serif;
-    width: 100%;
-    height: 100vh;
-    background-color: #343D4B;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: #343d4b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.weather__content{
-    position: relative;
-    max-width: 600px;
-    width: 100%;
-    height: 666px;
-    background-image: url("img/cov.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;    
-    padding: 48px 32px;
-    border-radius: 30px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.weather__content {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  height: 666px;
+  background-image: url("img/cov.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 48px 32px;
+  border-radius: 30px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .weather__content::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(152.19deg, rgba(136, 235, 239, 0.9) -0.04%, rgba(83, 91, 230, 0.9) 100%);
-    opacity: 0.2;
-    border-radius: 30px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    152.19deg,
+    rgba(136, 235, 239, 0.9) -0.04%,
+    rgba(83, 91, 230, 0.9) 100%
+  );
+  opacity: 0.2;
+  border-radius: 30px;
 }
 
-.top,.bottom {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
+.top,
+.bottom {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
 }
 
 .day {
-    font-weight: 700;
-    font-size: 37px;
+  font-weight: 700;
+  font-size: 37px;
 }
 
 .date {
-    font-weight: 500;
-    font-size: 22px;
+  font-weight: 500;
+  font-size: 22px;
 }
 
 .location {
-    font-weight: 600;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    column-gap: 5px;
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
 }
 
-
 .celsius {
-    font-weight: 700;
-    font-size: 50px;
+  font-weight: 700;
+  font-size: 50px;
 }
 
 .weather__info {
-    font-weight: 700;
-    font-size: 30px;
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .icon img {
-    width: 80px;
-    height: 80px;
+  width: 80px;
+  height: 80px;
 }
 
-.loading{
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-family: "Montserrat", sans-serif;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 48px;
-    font-weight: 700;
-    background-color: #343D4B;
-    visibility: hidden;
-    z-index: -1;
-    opacity: 0;
-    transition: all .3s;
-    
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  font-weight: 700;
+  background-color: #343d4b;
+  visibility: hidden;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s;
 }
 .loading.active {
-    position: absolute;
-    visibility: visible;
-    z-index: 1;
-    opacity: 1;
+  position: absolute;
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
 }
 .loading span {
-    animation: loadingAnim 1s infinite alternate;
+  animation: loadingAnim 1s infinite alternate;
 }
 
 @keyframes loadingAnim {
-    from {
-        opacity: 0;
-        color: #fff;
-    }
-    to {
-        opacity: 1;
-        color: rgba(83, 91, 230, 0.9);
-    }
+  from {
+    opacity: 0;
+    color: #fff;
+  }
+  to {
+    opacity: 1;
+    color: rgba(83, 91, 230, 0.9);
+  }
+}
+
+#errorModalContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  column-gap: 5px;
+  align-items: center;
+  right: 0;
+  top: 20px;
+  padding: 20px 30px;
+  background-color: red;
+  color: #fff;
+  transition: all 0.8s linear;
+  transform: translateX(100%);
 }
